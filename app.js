@@ -13,7 +13,11 @@ initDatabase(db);
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-
+app.use(express.static('public'));
+// Definir EJS como template engine
+app.set('view engine', 'ejs');
+app.set('views', './views');  // Diretório onde ficam os arquivos .ejs
+// Rotas
 app.use('/', indexRoutes);
 app.use('/users', usersRoutes);
 
