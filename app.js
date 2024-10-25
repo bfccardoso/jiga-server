@@ -7,6 +7,7 @@ const path = require('path');
 const fs = require('fs');
 const indexRoutes = require('./routes/index');
 const usersRoutes = require('./routes/users');
+const productsRoutes = require('./routes/products');
 
 // Executa o script SQL uma única vez na inicialização
 initDatabase(db);
@@ -20,6 +21,7 @@ app.set('views', './views');  // Diretório onde ficam os arquivos .ejs
 // Rotas
 app.use('/', indexRoutes);
 app.use('/users', usersRoutes);
+app.use('/products', productsRoutes);
 
 app.listen(config.PORT, () => {
   console.log(`Servidor rodando na porta ${config.PORT}`);
