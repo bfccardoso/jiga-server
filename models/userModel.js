@@ -1,4 +1,4 @@
-const db = require('../db/jigaServer');
+const db = require('../db/db');
 
 // Função para obter todos os usuários
 const getAllUsers = () => {

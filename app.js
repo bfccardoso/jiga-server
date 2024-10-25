@@ -1,6 +1,6 @@
 const express = require('express');
 const app = express();
-const db = require('./db/jigaServer');  // Importa a conexão com o banco
+const db = require('./db/db');  // Importa a conexão com o banco
 const initDatabase = require('./db/init');  // Importa a inicialização do banco
 const config = require('./config/config'); // Importa as constantes
 const path = require('path');
