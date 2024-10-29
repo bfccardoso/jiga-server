@@ -1,5 +1,5 @@
-const User = require('../models/userModel');
-const UserDTO = require('../dtos/userDTO');
+const User = require('./userModel');
+const UserDTO = require('./userDTO');
 
 const createUser = async (req, res) => {
   try {

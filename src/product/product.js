@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
-const ProductsController = require('../controllers/productController');
-const {productSchema} = require('../schemas/productSchema');
+const ProductsController = require('./productController');
+const {productSchema} = require('./productSchema');
 const validateRequest = require('../middlewares/validateRequest');
 
 router.post('/', validateRequest(productSchema), ProductsController.createProduct); // Criar produto

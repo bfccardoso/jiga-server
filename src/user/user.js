@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
-const usersController = require('../controllers/userController');
-const {userSchema} = require('../schemas/userSchema');
+const usersController = require('./userController');
+const {userSchema} = require('./userSchema');
 const validateRequest = require('../middlewares/validateRequest');
 
 router.post('/', validateRequest(userSchema), usersController.createUser); // Criar usuário

@@ -1,5 +1,5 @@
-const Product = require('../models/productModel');
-const ProductDTO = require('../dtos/productDTO');
+const Product = require('./productModel');
+const ProductDTO = require('./productDTO');
 
 module.exports = {
   async createProduct(req, res) {

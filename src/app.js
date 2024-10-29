@@ -3,11 +3,9 @@ const app = express();
 const db = require('./db/db');  // Importa a conexão com o banco
 const initDatabase = require('./db/init');  // Importa a inicialização do banco
 const config = require('./config/config'); // Importa as constantes
-const path = require('path');
-const fs = require('fs');
-const indexRoutes = require('./routes/index');
-const userRoutes = require('./routes/user');
-const productRoutes = require('./routes/product');
+const indexRoutes = require('../index');
+const userRoutes = require('./user/user');
+const productRoutes = require('./product/product');
 
 // Executa o script SQL uma única vez na inicialização
 initDatabase(db);

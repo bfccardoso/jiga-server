@@ -1,7 +1,7 @@
 // routes/index.js
 const express = require('express');
 const router = express.Router();
-const userModel = require('../models/userModel')
+const userModel = require('./src/user/userModel')
 
 // Rota para a raiz "/"
 // router.get('/', (req, res) => {
