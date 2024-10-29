@@ -1,16 +1,16 @@
 const db = require('../db/db');
 
 // Função para criar um novo usuário
-const createUser = (userData) => {
+const createUser = ({name, email}) => {
   return new Promise((resolve, reject) => {
-    db.run(
-      'INSERT INTO users (name, email) VALUES (?, ?)',
-      [userData.name, userData.email],
-      function (err) {
-        if (err) reject(err);
-        else resolve({ id: this.lastID, ...userData });
-      }
-    );
+    const query = 'INSERT INTO users (name, email) VALUES (?, ?)';
+    db.run(query, [name, email], function (err) {
+        if (err) {
+          reject(err);
+        } else {
+          resolve({ id: this.lastID, name, email });
+        }
+    });
   });
 };
 

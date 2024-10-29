@@ -4,8 +4,8 @@ const db = require('./db/db');  // Importa a conexão com o banco
 const initDatabase = require('./db/init');  // Importa a inicialização do banco
 const config = require('./config/config'); // Importa as constantes
 const indexRoutes = require('../index');
-const userRoutes = require('./user/user');
-const productRoutes = require('./product/product');
+const userRoutes = require('./user/userRoutes');
+const productRoutes = require('./product/productRoutes');
 
 // Executa o script SQL uma única vez na inicialização
 initDatabase(db);

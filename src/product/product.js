@@ -1,13 +1,11 @@
-const express = require('express');
-const router = express.Router();
-const ProductsController = require('./productController');
-const {productSchema} = require('./productSchema');
-const validateRequest = require('../middlewares/validateRequest');
+// validation/productValidation.js
+const Joi = require('joi');
 
-router.post('/', validateRequest(productSchema), ProductsController.createProduct); // Criar produto
-router.get('/', ProductsController.getAllProducts); // Listar produtos
-router.get('/:id', ProductsController.getProductById); // Visualizar produto
-router.put('/:id', validateRequest(productSchema), ProductsController.updateProduct); // Atualizar produto
-router.delete('/:id', ProductsController.deleteProduct); // Deletar produto
+const productSchema = Joi.object({
+  name: Joi.string().min(3).max(50).required(),
+  code: Joi.string().min(3).max(10).required()
+});
 
-module.exports = router;
+module.exports = {
+    productSchema
+};

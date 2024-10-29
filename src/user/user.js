@@ -1,13 +1,9 @@
-const express = require('express');
-const router = express.Router();
-const usersController = require('./userController');
-const {userSchema} = require('./userSchema');
-const validateRequest = require('../middlewares/validateRequest');
+// validation/userValidation.js
+const Joi = require('joi');
 
-router.post('/', validateRequest(userSchema), usersController.createUser); // Criar usuário
-router.get('/', usersController.getAllUsers); // Listar usuários
-router.get('/:id', usersController.getUserById); // Visualizar usuário
-router.put('/:id', validateRequest(userSchema), usersController.updateUser); // Atualizar usuário
-router.delete('/:id', usersController.deleteUser); // Deletar usuário
+const userSchema = Joi.object({
+  name: Joi.string().min(3).max(50).required(),
+  email: Joi.string().min(7).max(100).required()
+});
 
-module.exports = router;
+module.exports = { userSchema };
