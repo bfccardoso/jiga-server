@@ -21,6 +21,6 @@ app.use('/', indexRoutes);
 app.use('/users', userRoutes);
 app.use('/products', productRoutes);
 
-app.listen(config.PORT, () => {
-  console.log(`Servidor rodando na porta ${config.PORT}`);
+app.listen(config.PORT, '0.0.0.0', () => {
+  console.log(`Servidor HTTPS rodando na porta ${config.PORT}`);
 });
