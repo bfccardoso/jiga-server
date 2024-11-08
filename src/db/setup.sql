@@ -13,3 +13,12 @@ CREATE TABLE IF NOT EXISTS products (
     name TEXT NOT NULL,
     code TEXT NOT NULL UNIQUE
 );
+
+CREATE TABLE IF NOT EXISTS firmwares (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    product_id INTEGER NOT NULL,
+    filename TEXT NOT NULL,
+    is_current BOOLEAN DEFAULT FALSE,
+    upload_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (product_id) REFERENCES products(id)
+);

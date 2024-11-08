@@ -6,6 +6,7 @@ const config = require('./config/config'); // Importa as constantes
 const indexRoutes = require('../index');
 const userRoutes = require('./user/userRoutes');
 const productRoutes = require('./product/productRoutes');
+const firmwareRoutes = require('./firmware/firmwareRoutes')
 
 // Executa o script SQL uma única vez na inicialização
 initDatabase(db);
@@ -20,6 +21,7 @@ app.set('views', './views');  // Diretório onde ficam os arquivos .ejs
 app.use('/', indexRoutes);
 app.use('/users', userRoutes);
 app.use('/products', productRoutes);
+app.use('/firmwares', firmwareRoutes);
 
 app.listen(config.PORT, '0.0.0.0', () => {
   console.log(`Servidor HTTPS rodando na porta ${config.PORT}`);
