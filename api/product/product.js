@@ -3,7 +3,9 @@ const Joi = require('joi');
 
 const productSchema = Joi.object({
   name: Joi.string().min(3).max(50).required(),
-  code: Joi.string().min(3).max(10).required()
+  family: Joi.string().min(3).max(50).required(),
+  description: Joi.string().min(3).max(100).allow(''),
+  code: Joi.string().min(3).max(10).allow('')
 });
 
 module.exports = {

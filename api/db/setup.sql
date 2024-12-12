@@ -11,7 +11,9 @@ CREATE TABLE IF NOT EXISTS users (
 CREATE TABLE IF NOT EXISTS products (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     name TEXT NOT NULL,
-    code TEXT NOT NULL UNIQUE
+    family TEXT NOT NULL,
+    description TEXT DEFAULT NULL,
+    code TEXT DEFAULT NULL
 );
 
 CREATE TABLE IF NOT EXISTS firmwares (
@@ -20,5 +22,13 @@ CREATE TABLE IF NOT EXISTS firmwares (
     filename TEXT NOT NULL,
     is_current BOOLEAN DEFAULT FALSE,
     upload_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (product_id) REFERENCES products(id)
+);
+
+CREATE TABLE IF NOT EXISTS jigas (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name TEXT NOT NULL,
+    code TEXT NOT NULL,
+    product_id INTEGER NOT NULL,
     FOREIGN KEY (product_id) REFERENCES products(id)
 );

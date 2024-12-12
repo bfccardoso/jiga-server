@@ -1,14 +1,15 @@
 const db = require('../db/db');
 
 // Função para criar um novo produto
-const createProduct = ({ name, code }) => {
+const createProduct = ({ name, family, description, code }) => {
   return new Promise((resolve, reject) => {
-    const query = 'INSERT INTO products (name, code) VALUES (?, ?)';
-    db.run(query, [name, code], function (err) {
+    const query = 'INSERT INTO products (name, family, description, code) VALUES (?, ?, ?, ?)';
+    console.log('description: ', description)
+    db.run(query, [name, family, description, code], function (err) {
       if (err) {
         reject(err);
       } else {
-        resolve({ id: this.lastID, name, code });
+        resolve({ id: this.lastID, name, family, description, code });
       }
     });
   });
@@ -41,14 +42,14 @@ const getProductById = (id) => {
 };
 
 // Função para atualizar um produto pelo ID
-const updateProduct = (id, { name, code }) => {
+const updateProduct = (id, { name, family, description, code }) => {
   return new Promise((resolve, reject) => {
-    const query = 'UPDATE products SET name = ?, code = ? WHERE id = ?';
-    db.run(query, [name, code, id], function (err) {
+    const query = 'UPDATE products SET name = ?, family = ?, description = ?, code = ? WHERE id = ?';
+    db.run(query, [name, family, description, code, id], function (err) {
       if (err) {
         reject(err);
       } else {
-        resolve({ id, name, code });
+        resolve({ id, name, family, description, code });
       }
     });
   });
@@ -67,10 +68,10 @@ const deleteProduct = (id) => {
   });
 };
 
-const isCodeUsed = (code) => {
+const isNameUsed = (name) => {
   return new Promise((resolve, reject) => {
-    const query = `SELECT COUNT(*) as count FROM products WHERE code = ?`;
-    db.get(query, [code], (err, row) => {
+    const query = `SELECT COUNT(*) as count FROM products WHERE name = ?`;
+    db.get(query, [name], (err, row) => {
       if (err) {
         reject(err);
       } else {
@@ -80,10 +81,10 @@ const isCodeUsed = (code) => {
   });
 };
 
-const isCodeUsedByOtherId = (code, productId) => {
+const isNameUsedByOtherId = (name, productId) => {
   return new Promise((resolve, reject) => {
-    const query = `SELECT COUNT(*) as count FROM products WHERE code = ? AND id != CAST(? AS TEXT)`;
-    db.get(query, [code, productId], (err, row) => {
+    const query = `SELECT COUNT(*) as count FROM products WHERE name = ? AND id != CAST(? AS TEXT)`;
+    db.get(query, [name, productId], (err, row) => {
       if (err) {
         reject(err);
       } else {
@@ -99,6 +100,6 @@ module.exports = {
   getProductById,
   updateProduct,
   deleteProduct,
-  isCodeUsed,
-  isCodeUsedByOtherId
+  isNameUsed,
+  isNameUsedByOtherId
 };

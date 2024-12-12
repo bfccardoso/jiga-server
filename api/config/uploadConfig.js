@@ -12,7 +12,7 @@ const dbPromise = sqlite.open({
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, path.join(__dirname, '../../public/uploads/firmwares'));
+    cb(null, path.join(__dirname, '../public/uploads/firmwares'));
   },
   filename: async (req, file, cb) => {
     try {
